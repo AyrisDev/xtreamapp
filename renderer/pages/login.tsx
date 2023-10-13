@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
-const login = () => {
+const Login = () => {
   const router = useRouter();
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
@@ -36,7 +36,7 @@ const login = () => {
         "dataUrl",
         JSON.stringify(`http://live.forzaxui.xyz:8080/`)
       );
-      router.replace("/movie");
+      router.replace("/home");
     }
 
     if (data.user_info.auth === 0) {
@@ -45,45 +45,64 @@ const login = () => {
   };
 
   return (
-    <div className="bg-[#3f3f46] w-full min-h-screen flex justify-center items-center">
-      <div className="flex justify-center items-center ">
-        <div className="bg-[#374151] p-4 rounded-xl ">
-          <div className="justify-center items-center">
-            <div className="my-2 justify-center items-center flex">Logo</div>
-            <div className="rounded-xl">
-              <input
-                placeholder="username"
-                className="rounded-lg p-2  text-gray-900"
-                value={user}
-                onChange={(e) => setUser(e.target.value)}
+    <div className="relative min-h-screen flex justify-center bg-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 bg-no-repeat bg-cover items-center">
+      <div className="max-w-md w-full space-y-8 p-10 bg-white rounded-xl shadow-lg z-10">
+        <div className="grid  gap-8 grid-cols-1">
+          <div className="flex flex-col items-center justify-center ">
+            <div className="flex ">
+              <img
+                src="https://images.unsplash.com/photo-1532423622396-10a3f979251a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1500&q=80"
+                className="h-24"
               />
             </div>
-            <div className="my-4">
-              {" "}
-              <input
-                placeholder="password"
-                className="rounded-lg p-2  text-gray-900"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-            <div className="justify-center items-center flex">
-              {" "}
-              <button
-                className="bg-[#a1a1aa] p-2 rounded-lg"
-                type="submit"
-                onClick={() => makeRequest()}>
-                Login
-              </button>
+            <div className="mt-5">
+              <div className="form">
+                <div className="md:space-y-2 mb-3">
+                  <div className="flex-auto w-full mb-1 text-xs space-y-2">
+                    <label className="font-semibold text-gray-600 py-2">
+                      Username
+                    </label>
+                    <input
+                      value={user}
+                      onChange={(e) => setUser(e.target.value)}
+                      name="message"
+                      id=""
+                      className="w-full appearance-none block bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg  py-4 px-4"
+                      placeholder="Enter Your Username"></input>
+                  </div>
+
+                  <div className="flex-auto w-full mb-1 text-xs space-y-2">
+                    <label className="font-semibold text-gray-600 py-2">
+                      Password
+                    </label>
+                    <input
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      name="message"
+                      id=""
+                      className="w-full appearance-none block bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg  py-4 px-4"
+                      placeholder="Enter Your Password"></input>
+                  </div>
+
+                  <div className="mt-5 text-right md:space-x-3 md:block flex flex-col-reverse">
+                    <button className="mb-2 md:mb-0 bg-white px-5 py-2 text-sm shadow-sm font-medium tracking-wider border text-gray-600 rounded-full hover:shadow-lg hover:bg-gray-100">
+                      Register
+                    </button>
+                    <button
+                      type="submit"
+                      onClick={() => makeRequest()}
+                      className="mb-2 md:mb-0 bg-gray-600 px-5 py-2 text-sm shadow-sm font-medium tracking-wider text-white rounded-full hover:shadow-lg hover:bg-green-500">
+                      Login
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      {errorModal && (
-        <div className="w-full h-full flex bg-gray-200 text-blue-500">test</div>
-      )}
     </div>
   );
 };
 
-export default login;
+export default Login;
